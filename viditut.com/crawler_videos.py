@@ -6,7 +6,7 @@ import json
 def request_timeout(url):
     while True:
         try:
-            return requests.get(url, timeout=20)
+            return requests.get(url, timeout=30)
         except:
             print("!", end="", flush=True)
             continue
@@ -22,7 +22,7 @@ def get_videos(course):
 
         if link.get("class") is not None and str(link.get("class")) == "['item-name', 'video-name', 'ga']":
             video_id = link.get("data-ga-value")
-            video_name = link.text.strip()
+            video_name = link.text.replace("\n", "").strip()
 
             videos.append((video_name, video_id))
 
@@ -46,9 +46,9 @@ def get_links(course, video):
     return links
 
 
-file = open("courses.txt", "r")
+file = open("xan", "r")
 
-fileout = open("links.txt", "w")
+fileout = open("links-xan.txt", "w")
 
 for line in file.read().splitlines():
 
@@ -60,7 +60,7 @@ for line in file.read().splitlines():
 
     for video in get_videos(course):
         for link in get_links(course, video):
-            fileout.write(category + "/" + course_name + "\0" + link[0] + "\0" + link[1] + "\n")
+            fileout.write(category + "/" + course_name + "/" + video[0] + "\0" + link[0] + "\0" + link[1] + "\n")
         fileout.flush()
 
 

@@ -8,7 +8,7 @@ URL = "https://viditut.com"
 def request_timeout(url):
     while True:
         try:
-            return requests.get(url, timeout=20)
+            return requests.get(url, timeout=30)
         except:
             print("!", end="", flush=True)
             continue
@@ -60,7 +60,7 @@ def get_courses(category):
     return courses
 
 
-file = open("courses.txt", "w")
+file = open("xab", "w")
 
 for category in get_categories():
     print(category)
