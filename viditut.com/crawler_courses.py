@@ -60,7 +60,7 @@ def get_courses(category):
     return courses
 
 
-file = open("xab", "w")
+file = open("courses.txt", "w")
 
 for category in get_categories():
     print(category)

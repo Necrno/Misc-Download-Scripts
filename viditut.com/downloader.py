@@ -2,7 +2,7 @@ import pathlib
 import os
 import requests
 
-file = open("links-xaa.txt", "r")
+file = open("links.txt", "r")
 
 for line in file.read().splitlines():
 
@@ -19,7 +19,7 @@ for line in file.read().splitlines():
         try:
             response = requests.get(link, stream=True, timeout=5)
 
-            with open(path + ".mp4", 'wb') as f:
+            with open(path + "[" + quality + "].mp4", 'wb') as f:
                 for chunk in response.iter_content(chunk_size=1024):
                     if chunk:
                         f.write(chunk)
