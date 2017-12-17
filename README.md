@@ -1,4 +1,4 @@
-## Scripts to download content from a bunch of websites
+## Scripts for downloading content from a bunch of websites
 
 ### Setup:
 
