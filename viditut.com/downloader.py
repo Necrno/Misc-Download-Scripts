@@ -4,9 +4,16 @@ import requests
 
 file = open("links.txt", "r")
 
+i = 0
+
 for line in file.read().splitlines():
 
     path, quality, link = line.split("\0")
+
+    if quality != "720":
+        continue
+
+    i += 1
 
     pathlib.Path(os.path.split(path)[0]).mkdir(parents=True, exist_ok=True)
 
@@ -19,7 +26,8 @@ for line in file.read().splitlines():
         try:
             response = requests.get(link, stream=True, timeout=5)
 
-            with open(path + "[" + quality + "].mp4", 'wb') as f:
+            with open(os.path.split(path)[0] + os.sep + str(i) + " -" + os.path.split(path)[1] +
+                              "[" + quality + "].mp4", 'wb') as f:
                 for chunk in response.iter_content(chunk_size=1024):
                     if chunk:
                         f.write(chunk)
