@@ -8,13 +8,17 @@ file = open("links.txt", "r")
 for line in file.read().splitlines():
 
     path, link = line.split("\0")
+    pathlib.Path("sounds/" + path.strip()).mkdir(parents=True, exist_ok=True)
+
+    # if os.path.exists("sounds/" + path + "/" + path.split("/")[-2:-1][0] + ".zip") or \
+    #     os.path.exists("sounds/" + path + "/" + path.split("/")[-2:-1][0] + ".mp3"):
+    #     continue
 
     print("sounds/" + path)
 
-    pathlib.Path("sounds/" + path).mkdir(parents=True, exist_ok=True)
 
     while True:
-        try:
+        # try:
             response = requests.get(link, stream=True, timeout=5)
 
             file_extension = os.path.splitext(response.headers["Content-Disposition"])[1][:-2]
@@ -25,6 +29,6 @@ for line in file.read().splitlines():
                         f.write(chunk)
 
             break
-        except:
-            print("!", end="", flush=True)
-            continue
+        # except:
+        #     print("!", end="", flush=True)
+        #     continue
