@@ -2,7 +2,7 @@ import pathlib
 import os
 import requests
 
-file = open("links.txt", "r")
+file = open("links1.txt", "r")
 
 i = 0
 
@@ -17,7 +17,8 @@ for line in file.read().splitlines():
 
     pathlib.Path(os.path.split(path)[0]).mkdir(parents=True, exist_ok=True)
 
-    if os.path.isfile(path + ".mp4"):
+    if os.path.isfile(os.path.split(path)[0] + os.sep + str(i) + " -" + os.path.split(path)[1] +
+            "[" + quality + "].mp4"):
         continue
 
     print(path)

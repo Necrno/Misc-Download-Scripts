@@ -46,9 +46,9 @@ def get_links(course, video):
     return links
 
 
-file = open("xan", "r")
+file = open("courses.txt", "r")
 
-fileout = open("links-xan.txt", "w")
+fileout = open("links1.txt", "w")
 
 for line in file.read().splitlines():
 
